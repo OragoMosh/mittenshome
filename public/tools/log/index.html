@@ -1,0 +1,92 @@
+
+
+<title>Mittens Home - Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+
+<section id="cta" class="main special">
+						<h2>Join The Mittens Project</h2>
+						<p>Click this link below to log in with google</p>
+						<ul class="actions">
+              
+							<html lang="en">
+  <head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="30556323290-ltu03dnagnifg92uglce705voqcqme4e.apps.googleusercontent.com">
+     <script src="https://apis.google.com/js/platform.js" async defer></script>
+   </head>
+  <body>
+    <div class="gbutton g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+        setTimeout(function(){ logoutshow(); }, 3000);
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+      }
+    </script>
+    <script>
+  function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
+    <script>//autohide logout button
+    setTimeout(function(){ logouthide(); }, );
+    </script>
+    
+    
+    <style>/*Hide/Show logout box*/
+#lout {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+<body>
+<div id="lout">
+<a href="/login" onclick="signOut();">Sign out</a>
+</div>
+  
+  <script>// show logout button
+function logoutshow() {
+  var x = document.getElementById("lout");
+  if (x.style.display === "block") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "block";
+  }
+}
+</script>
+  
+<script>// hide logout button
+function logouthide() {
+  var x = document.getElementById("lout");
+  if (x.style.display === "none") {
+    x.style.display = "none";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+    </body></body></html></ul></section>
+
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/skel.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>

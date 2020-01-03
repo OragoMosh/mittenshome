@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mittens - Boredom  Dots</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.0/p5.js"></script>
+	<style>body,html{padding:0;margin:0;overflow:hidden;}canvas{margin:0 auto;}</style>
+</head>
+<body>
+
+
+	<script>
+var Matrix = {
+	'DOT_RADIUS': 2,
+	'DOT_SPACING': 25,
+	'DOT_COLOR': '#D60808',
+	'BACKGROUND_COLOR': '#890B0B',
+	'MAX_DOT_SIZE': 50,
+	'THRESHOLD': 1.5,
+	'dots': [  ]
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight)
+  var totalDotsPerRow = windowWidth / ((Matrix.DOT_RADIUS * 2) + Matrix.DOT_SPACING)
+  var totalRows = windowHeight / ((Matrix.DOT_RADIUS * 2) + Matrix.DOT_SPACING)
+  var y = 0
+  for(var r = 0; r < totalRows; r++){
+  	Matrix.dots[r] = [  ]
+  	if(r === 0){
+  		y = Matrix.DOT_RADIUS
+  	}else{
+  		y = (r + .5) * (Matrix.DOT_RADIUS * 2)
+  	}
+  	var x = Matrix.DOT_RADIUS;
+  	for(var d = 0; d < totalDotsPerRow; d++){
+  		if(d === 0){
+	  		x = Matrix.DOT_RADIUS
+	  	}else{
+	  		x = (d + .5) * (Matrix.DOT_RADIUS * 2)
+	  	}
+  		if(
+  			y + Matrix.DOT_RADIUS < windowHeight
+  			&&
+  			x + Matrix.DOT_RADIUS < windowWidth
+  		){
+	  		var dot = new Dot(x + (d + 1) * (Matrix.DOT_SPACING), y + (r + 1) * (Matrix.DOT_SPACING), Matrix.DOT_COLOR)
+	  		Matrix.dots[r].push(dot)
+	  	}
+  	}
+  }
+}
+
+function draw() {
+	clear()
+	background(Matrix.BACKGROUND_COLOR)
+	for(var r = 0, rlen = Matrix.dots.length; r < rlen; r++){
+		for(var d = 0, dlen = Matrix.dots[r].length; d < dlen; d++){
+			Matrix.dots[r][d].draw()
+		}
+	}
+
+	var legend = 'Mittens'
+	strokeWeight(1)
+	stroke('rgba(0, 0, 0, .2)')
+	fill('rgba(0, 0, 0, .1)')
+	rect(10, windowHeight - 41, textWidth(legend) + 10, 30)
+	fill(50)
+	textSize(16)
+	text(legend, 15, windowHeight - 20)
+}
+
+function randomRGB(){
+	return 'rgb(' + parseInt(random(10, 240), 10) + ', ' + parseInt(random(10, 240), 10) + ', ' + parseInt(random(10, 240), 10) + ')'
+}
+
+function Dot(x, y, color){
+	this.x = x
+	this.y = y
+	this.color = color
+	this.factor = 0
+	this.draw = function(){
+		noStroke()
+		fill(this.color)
+		var diff = 0
+		diff = Math.sqrt((((mouseX - this.x)*(mouseX - this.x)) + ((mouseY - this.y)*(mouseY - this.y))) / 2)
+		diff /= 1000
+		var size = (Matrix.DOT_RADIUS * 2) + (Matrix.THRESHOLD / (diff * 2))
+		if(size > Matrix.MAX_DOT_SIZE){
+			size = Matrix.MAX_DOT_SIZE
+		}
+		ellipse(this.x, this.y, size)
+	}
+	this.draw()
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight)
+}
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+
+<title>Mittens Home - Timers</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/assets/css/main.css" />
+<section id="cta" class="main special">
+						<h2>Project Mittens - Timers</h2>
+						<p>Please select an event</p>
+  <body>
+  <script src="/assets/js/bg/bubbly-bg.js"></script>
+  <script src="/assets/js/schemes/normal.js"></script>
+</body>
+						<ul class="actions">
+              <li><a href="/tools/timers/christmas" class="button">Christmas</a></li>
+              <li><a href="/tools/timers/new-years/" class="button">New Years</a></li>
+              <li><a href="/tools/timers/world-clock/" class="button">World-Clock</a></li>
+</ul></section>
+
+			<script src="/assets/js/jquery.min.js"></script>
+			<script src="/assets/js/skel.min.js"></script>
+			<script src="/assets/js/util.js"></script>
+			<script src="/assets/js/main.js"></script>
